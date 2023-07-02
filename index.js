@@ -15,7 +15,6 @@ let todoList = [];
 let id = 0;
 
 function saveTodo(req, res) {
-    console.log("saving a request"); 
     const title = req.body.title;
     const description = req.body.description;
     const body = {
@@ -25,12 +24,10 @@ function saveTodo(req, res) {
     }
     todoList.push(body);
     const response = {id : id}; 
-    console.log(response); 
     res.status(200).send(body); 
 }
 
 function getAllTodos(req, res) {
-    console.log("get all todods"); 
     if (todoList.length > 0) {
         res.status(200).send(todoList);
     } else {
@@ -39,15 +36,12 @@ function getAllTodos(req, res) {
 }
 
 function deleteTodo(req, res){
-    console.log("Deleting a todo"); 
     const id = req.params.id; 
-    console.log("length : " + todoList.length); 
     let tempArray = []; 
     todoList.forEach((todo) => {
         if (todo.id != id)
             tempArray.push(todo); 
     }); 
     todoList = tempArray; 
-    console.log("length : " + todoList.length); 
     res.status(200).send(todoList);  
 }

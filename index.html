@@ -26,7 +26,6 @@
     }
 
     function parsedTodoList(todoList) {
-        console.log("parsed object : " + JSON.stringify(todoList));
         const parentElement = document.getElementById("todoList");
         todoList.forEach((todo) => {
             const childElement = pushToHtml(todo);
@@ -50,14 +49,12 @@
     getData(); 
 
     function parsedResponse(todo) {
-        console.log("parsed object : " + JSON.stringify(todo));
         const parentElement = document.getElementById("todoList")
         const childElement = pushToHtml(todo);
         parentElement.appendChild(childElement);
     }
 
     function callback(resp) {
-        console.log("callback called");
         resp.json().then(parsedResponse);
     }
 
@@ -73,7 +70,6 @@
                 "Content-Type": "application/json"
             }
         }).then(callback);
-        console.log("fetched");
     }
 
     function removeFromHtml(todoList){
@@ -90,7 +86,6 @@
     }
         
     function deleteTodo(id){
-        console.log("id in html : " + id); 
         fetch("http://localhost:3000/todos/" + id, {
             method: "DELETE", 
             headers: {
