@@ -4,7 +4,7 @@
 <script>
 
     function pushToHtml(todo) {
-        const childElement = document.createElement("div");
+        const childElement = document.createElement("li");
         const grandChild1 = document.createElement("span");
         const grandChild2 = document.createTextNode(" ");
         const grandChild3 = document.createElement("span");
@@ -113,5 +113,5 @@
     </section>
     <hr>
     <h3>Todo List</h3>
-    <section id="todoList"></section>
+    <ol id="todoList"></ol>
 </body>
