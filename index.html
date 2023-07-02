@@ -8,7 +8,7 @@
         const grandChild1 = document.createElement("span");
         const grandChild2 = document.createTextNode(" ");
         const grandChild3 = document.createElement("span");
-        const grandChild4 = document.createElement("BUTTON");
+        const grandChild4 = document.createElement("button");
         const grandChild5 = document.createTextNode(" "); 
 
         grandChild1.innerHTML = todo.title;
@@ -47,7 +47,7 @@
         }).then(getDataCallback);
     }
 
-    getData();
+    getData(); 
 
     function parsedResponse(todo) {
         console.log("parsed object : " + JSON.stringify(todo));
@@ -76,6 +76,19 @@
         console.log("fetched");
     }
 
+    function removeFromHtml(todoList){
+        const parentElement = document.getElementById("todoList"); 
+        parentElement.innerHTML = ''; 
+        todoList.forEach((todo) => {
+            const childElement = pushToHtml(todo); 
+            parentElement.appendChild(childElement); 
+        }); 
+    }
+
+    function removeTodo(resp){
+        resp.json().then(removeFromHtml); 
+    }
+        
     function deleteTodo(id){
         console.log("id in html : " + id); 
         fetch("http://localhost:3000/todos/" + id, {
@@ -83,7 +96,7 @@
             headers: {
                 "Content-Type": "application/json"
             }
-        }).then(getDataCallback); 
+        }).then(removeTodo); 
     }
 
 </script>
